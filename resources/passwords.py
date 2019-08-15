@@ -2,10 +2,8 @@ from flask_restful import Resource
 import enchant
 
 class Password(Resource):
-    # def __init__(self):
-    #     pass
-    def get(self, psw:str, complexity:str):
-        complexity_dict = {"1":"weak", "2":"medium", "3":"strong"}
+    def get(self, psw:str, complexity:int):
+        complexity_dict = {1:"weak", 2:"medium", 3:"strong"}
         # The two variables may be wrong
         if not (complexity in complexity_dict.keys()):
             return {
@@ -55,10 +53,10 @@ class Password(Resource):
 
         # According to the selected complexity, we check if the password complies to the required constraints
         if lowercase_letters != 0 and digits != 0 and len(psw)<15:
-            if complexity == "1":
+            if complexity == 1:
                 return ok_message
             elif capital_letters != 0 and special_char != 0 and len(psw)>= 5:
-                if complexity == "2":
+                if complexity == 2:
                     return ok_message
                 elif not is_in_dictionary:
                     return ok_message
@@ -72,6 +70,6 @@ class Password(Resource):
             return { "message": "not even WEAK. Sorry but you need to try another one." }, 200
 
 
-# if __name__ == "__main__":
-#     instan = Password().get("L0w3r#","3")
-#     print(instan)
+if __name__ == "__main__":
+    instan = Password().get("L0w3r#","3")
+    print(instan)
