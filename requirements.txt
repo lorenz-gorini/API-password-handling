@@ -1,6 +1,5 @@
 aniso8601==7.0.0
 certifi==2019.6.16
-pyenchant==2.0.0
 chardet==3.0.4
 Click==7.0
 cycler==0.10.0
@@ -18,6 +17,7 @@ MarkupSafe==1.1.1
 matplotlib==3.1.1
 numpy==1.17.0
 pandas==0.25.0
+pyenchant==2.0.0
 pyparsing==2.4.2
 python-dateutil==1.5
 pytz==2019.2
