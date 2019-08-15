@@ -1,5 +1,5 @@
 from flask_restful import Resource
-import enchant
+from spellchecker import spellchecker
 
 class Password(Resource):
     def get(self, psw:str, complexity:int):
@@ -39,8 +39,9 @@ class Password(Resource):
         for l in num_to_lett_dict.keys():
             psw_to_letter = psw_to_letter.replace(l,num_to_lett_dict[l])
         # Check in the english dictionary
-        enchant_dict = enchant.Dict("en_US")
-        is_in_dictionary = enchant_dict.check(psw_to_letter.lower())
+        spell = spellchecker.SpellChecker()
+
+        is_in_dictionary = spell.known([psw_to_letter.lower()])
 
         # Generate the resulting messages
         ok_message = {
@@ -71,5 +72,5 @@ class Password(Resource):
 
 
 if __name__ == "__main__":
-    instan = Password().get("L0w3r#","3")
+    instan = Password().get("L0w2r#",3)
     print(instan)
