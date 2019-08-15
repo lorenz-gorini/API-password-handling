@@ -1,5 +1,5 @@
 from flask_restful import Resource
-import enchant
+# import enchant
 
 class Password(Resource):
     def get(self, psw:str, complexity:int):
@@ -39,9 +39,9 @@ class Password(Resource):
         for l in num_to_lett_dict.keys():
             psw_to_letter = psw_to_letter.replace(l,num_to_lett_dict[l])
         # Check in the english dictionary
-        enchant_dict = enchant.Dict("en_US")
-        is_in_dictionary = enchant_dict.check(psw_to_letter.lower())
-
+        # enchant_dict = enchant.Dict("en_US")
+        # is_in_dictionary = enchant_dict.check(psw_to_letter.lower())
+        is_in_dictionary = True
         # Generate the resulting messages
         ok_message = {
                             "message":f"{complexity_dict[complexity].upper()}  as you required. Great Password!"
